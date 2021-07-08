@@ -2,3 +2,21 @@ name: clean-notebooks
 on: [push]
 jobs:
   clean:
+    name: clean
+    runs-on: ubuntu-latest
+    steps:
+    - name: install jq
+      run: sudo apt-get install jq
+    - name: get changed notebooks
+      id: files
+      uses: jitterbit/get-changed-files@v1
+    - name: Run jq
+      run: |
+        "for changed_file in ${{ steps.files.outputs.all }}; do
+          filename=$(basename -- \"$changed_file\")
+          extension=\"${filename##*.}\"
+          if [[ $extension == "ipynb" ]]; then 
+            cleaned=$(jq --indent 1 '(.cells[] | select(has(\"outputs\")) | .outputs) = [] | (.cells[] | select(has(\"execution_count\")) | .execution_count) = null  | .metadata = {\"language_info\": {\"name\": \"python\", \"pygments_lexer\": \"ipython3\"}} | .cells[].metadata = {}' $changed_file)
+            echo $cleaned >| $changed_file
+          fi
+        done"
