@@ -3,7 +3,7 @@ on: [push]
 jobs:
   clean:
     name: clean
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     steps:
     - name: install jq
       run: sudo apt-get install jq
