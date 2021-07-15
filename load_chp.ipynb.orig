@@ -7,7 +7,7 @@
     "id": "view-in-github"
    },
    "source": [
-    "<a href=\"https://colab.research.google.com/github/andrew-gerlach/small-world-hippos/blob/main/load_chp.ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+    "<a href=\"https://colab.research.google.com/github/andrew-gerlach/small-world-hippos/blob/peter/load_chp.ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
    ]
   },
   {
@@ -25,10 +25,12 @@
    "cell_type": "code",
    "execution_count": null,
    "metadata": {
+    "cellView": "form",
     "id": "fXIw61Dk-M5E"
    },
    "outputs": [],
    "source": [
+    "#@title Module Loading\n",
     "# Check if GPU is available\n",
     "from tensorflow.python.client import device_lib\n",
     "runtime = device_lib.list_local_devices()[0].device_type\n",
@@ -91,12 +93,14 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 16,
+   "execution_count": null,
    "metadata": {
+    "cellView": "form",
     "id": "oL4crLoCzkzk"
    },
    "outputs": [],
    "source": [
+    "#@title Run to load basic parameters\n",
     "# The download cells will store the data in nested directories starting here:\n",
     "HCP_DIR = \"./hcp\"\n",
     "if not os.path.isdir(HCP_DIR):\n",
@@ -159,10 +163,12 @@
    "cell_type": "code",
    "execution_count": null,
    "metadata": {
+    "cellView": "form",
     "id": "5Lh1SEyZ_Kdh"
    },
    "outputs": [],
    "source": [
+    "#@title Get Rest Data\n",
     "fname = \"hcp_rest.tgz\"\n",
     "if not os.path.exists(fname):\n",
     "  !wget -qO $fname https://osf.io/bqp7m/download/\n",
@@ -170,8 +176,49 @@
    ]
   },
   {
+   "cell_type": "markdown",
+   "id": "b8b6db44",
+   "metadata": {},
+   "source": [
+    "<span style=\"color:red\">**<<<<<<< local**</span>"
+   ]
+  },
+  {
    "cell_type": "code",
-   "execution_count": 17,
+   "execution_count": null,
+   "metadata": {
+    "cellView": "form",
+    "id": "5ubuyGN7siwI"
+   },
+   "outputs": [],
+   "source": [
+    "#@title Get task data, covariates, and atlas\n",
+    "fname = \"hcp_task.tgz\"\n",
+    "if not os.path.exists(fname):\n",
+    "  !wget -qO $fname https://osf.io/s4h8j/download/\n",
+    "  !tar -xzf $fname -C $HCP_DIR --strip-components=1\n",
+    "\n",
+    "fname = \"hcp_covariates.tgz\"\n",
+    "if not os.path.exists(fname):\n",
+    "  !wget -qO $fname https://osf.io/x5p4g/download/\n",
+    "  !tar -xzf $fname -C $HCP_DIR --strip-components=1\n",
+    "\n",
+    "fname = f\"{HCP_DIR}/atlas.npz\"\n",
+    "if not os.path.exists(fname):\n",
+    "  !wget -qO $fname https://osf.io/j5kuc/download"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f1d43be7",
+   "metadata": {},
+   "source": [
+    "<span style=\"color:red\">**=======**</span>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
    "metadata": {
     "id": "5ubuyGN7siwI"
    },
@@ -180,34 +227,24 @@
     "fname = \"hcp_task.tgz\"\n",
     "if not os.path.exists(fname):\n",
     "  !wget -qO $fname https://osf.io/s4h8j/download/\n",
-    "  !tar -xzf $fname -C $HCP_DIR --strip-components=1"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "id": "-4EQ0Y--VqUg"
-   },
-   "outputs": [],
-   "source": [
+    "  !tar -xzf $fname -C $HCP_DIR --strip-components=1\n",
+    "\n",
     "fname = \"hcp_covariates.tgz\"\n",
     "if not os.path.exists(fname):\n",
     "  !wget -qO $fname https://osf.io/x5p4g/download/\n",
-    "  !tar -xzf $fname -C $HCP_DIR --strip-components=1"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "id": "mLWaBeoJM28-"
-   },
-   "outputs": [],
-   "source": [
+    "  !tar -xzf $fname -C $HCP_DIR --strip-components=1\n",
+    "\n",
     "fname = f\"{HCP_DIR}/atlas.npz\"\n",
     "if not os.path.exists(fname):\n",
     "  !wget -qO $fname https://osf.io/j5kuc/download"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "545ecd5a",
+   "metadata": {},
+   "source": [
+    "<span style=\"color:red\">**>>>>>>> remote**</span>"
    ]
   },
   {
@@ -285,7 +322,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 18,
+   "execution_count": null,
    "metadata": {
     "cellView": "form",
     "id": "gf0UQI9UfiZB"
@@ -304,9 +341,8 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 19,
+   "execution_count": null,
    "metadata": {
-    "cellView": "form",
     "id": "pnq7H5h_IxLi"
    },
    "outputs": [],
@@ -518,556 +554,6 @@
   {
    "cell_type": "markdown",
    "metadata": {
-    "id": "0m29ahkxHHwP"
-   },
-   "source": [
-    "# Resting-state analyses"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {
-    "id": "vyprnpLjB-zX"
-   },
-   "source": [
-    "Load a single run of resting-state data:"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "id": "GNvXQ6JuK6HY"
-   },
-   "outputs": [],
-   "source": [
-    "help(load_timeseries)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "id": "kBrDMr59CAqi"
-   },
-   "outputs": [],
-   "source": [
-    "timeseries = load_timeseries(subject=0, name=\"rest\", runs=1)"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {
-    "id": "-umDZqB0MqFe"
-   },
-   "source": [
-    "Load a concatenated resting-state timeseries (using all runs' data) for each subject:\n",
-    "\n",
-    "*Note that there is a function to load an entire condition (all subjects) directly into an array:* `load_condition(name, mod=np)`"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "id": "PFD8UcUOLZtk"
-   },
-   "outputs": [],
-   "source": [
-    "timeseries_rest = [load_timeseries(subject, \"rest\") for subject in subjects]"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {
-    "id": "TTRPglYluz7w"
-   },
-   "source": [
-    "## Graph Thresholding\n",
-    "\n",
-    "Be sure to change the runtime to gpu to speed this up as much as possible! Pass in cupy arrays rather than numpy arrays."
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "cellView": "form",
-    "id": "-3L7hYwdaM1J"
-   },
-   "outputs": [],
-   "source": [
-    "#@title Threshold Helpers\n",
-    "#@markdown Run this to get the thresholding functions! Main entrypoint is below, \n",
-    "#@markdown use `help(graph_threshold)` for full description\n",
-    "\n",
-    "#@markdown `graph_threshold(input, numSurr)`\n",
-    "def graph_threshold(input, numSurr):\n",
-    "  \"\"\"\n",
-    "    Thresholds FC data using fourier transform surrogates. Pass in numpy or cupy \n",
-    "    array. Array must be at least 2 dimensions: the second to last must be nodes\n",
-    "    (e.g. atlas ROI), and the last must be the timecourse. The first\n",
-    "    dimension(s) may be any sort of indexing (e.g. subjects, conditions, etc). \n",
-    "\n",
-    "    Note that using cupy arrays is more than 10 times as fast as using numpy \n",
-    "    arrays. Be sure to enable GPU in colab.\n",
-    "\n",
-    "    Returns array of same type as input array (numpy vs cupy). Shape will \n",
-    "    be the same as the input, with the exception of the last two dimensions,\n",
-    "    which will contain the thresholded functional connectivity graphs\n",
-    "\n",
-    "    Args:\n",
-    "    x (numpy/cupy array of floats with at least 2 dims): data to be thresholded\n",
-    "    numSurr (scalar): Number of surrogates to calculate\n",
-    "\n",
-    "    Returns:\n",
-    "    (numpy/cupy array of floats) : Functional connectivity graphs \n",
-    "  \"\"\"\n",
-    "  xp = get_array_mod(input)\n",
-    "  index_dims = input.shape[:-2]\n",
-    "  if len(index_dims) > 1:\n",
-    "    # We put the single number inside a tuple\n",
-    "    index_dims = ( func.reduce(op.mul, input.shape[:-2]) )\n",
-    "  elif len(index_dims) == 0:\n",
-    "    index_dims = ( 1, )\n",
-    "  # Here, if index_dims is an empty tuple, it will not contribute anything to\n",
-    "  # the shape (i.e. working_shape will be a 2d tuple)\n",
-    "  shape = (*index_dims, *input.shape[-2:])\n",
-    "  working_input = xp.reshape(input, shape)\n",
-    "  results = xp.empty((*index_dims, *corrcoef_shape(input)))\n",
-    "  for i, sample in enumerate(working_input):\n",
-    "    results[i] = surrogate_threshold(sample, numSurr)\n",
-    "  \n",
-    "  return xp.reshape(results, (*input.shape[:-2], *corrcoef_shape(input)))\n",
-    "\n",
-    "\n",
-    "def surrogate_threshold(input, numSurr):\n",
-    "  xp = get_array_mod(input)\n",
-    "  assert(len(input.shape) == 2)\n",
-    "  fc_surr = xp.empty((numSurr, *corrcoef_shape(input)))\n",
-    "  for i in range(numSurr):\n",
-    "    surr = phase_randomize(input)\n",
-    "    fc_surr[i] = xp.corrcoef(surr)\n",
-    "\n",
-    "  fc = xp.corrcoef(input)\n",
-    "  cp.cuda.Device().synchronize()\n",
-    "\n",
-    "  if xp is cp:\n",
-    "    fc = cp.asnumpy(fc)\n",
-    "    fc_surr = cp.asnumpy(fc_surr)\n",
-    "  pvals = sc.stats.mstats.ttest_1samp(fc_surr, fc, axis=0).pvalue\n",
-    "  reject = two_d_multipletest(pvals)\n",
-    "  fc[~reject] = 0\n",
-    "  if xp is cp:\n",
-    "    fc = cp.asarray(fc)\n",
-    "  return fc\n",
-    "\n",
-    "\n",
-    "def two_d_multipletest(pvals, method='fdr_bh'):\n",
-    "  reject = sm.stats.multipletests(np.reshape(pvals, -1), method=method)[0]\n",
-    "  return np.reshape(reject, pvals.shape)\n",
-    "\n",
-    "\n",
-    "def phase_randomize(input):\n",
-    "  xp = get_array_mod(input)\n",
-    "  f_len = input.shape[-1]\n",
-    "  # 1. Calculate the Fourier transform of the original signal.\n",
-    "  f_transform = xp.fft.fft(input, f_len, axis=-1)\n",
-    "  amplitudes = np.abs(f_transform)\n",
-    "\n",
-    "  # 2. Generate a vector of random phases (i.e. a random sequence of values in\n",
-    "  #    the range [0, 2pi]) , with length L/2 , where L is the length of the time\n",
-    "  #    series.\n",
-    "  #    In this implementation, we make phases the same length as the transform,\n",
-    "  #    then symmetrize the phases by setting the front half as equal to the \n",
-    "  #    negative of the back half.\n",
-    "  phases = xp.random.uniform(-xp.pi, xp.pi, input.shape)\n",
-    "  phases[..., f_len//2:] = -phases[..., f_len//2:0:-1]\n",
-    "  phases[..., 0] = 0\n",
-    "\n",
-    "  # 3. As the Fourier transform is symmetrical, to create the new phase \n",
-    "  #    randomized vector, multiply the first half of F (i.e. the half\n",
-    "  #    corresponding to the positive frequencies) by the phases to create the\n",
-    "  #    first half of F_r. The remainder of F_r is then the horizontally flipped\n",
-    "  #    complex conjugate of the first half. \n",
-    "\n",
-    "  phases_added = amplitudes * xp.exp(1j * phases)\n",
-    "\n",
-    "\n",
-    "  # 4. Finally, the inverse Fourier transform F_r of gives the FT surrogate. \n",
-    "  #    Specifying time_len (the length of our original matrix) automatically\n",
-    "  #    pads the input array with 2 0s in each trial (as a result of the above\n",
-    "  #    operations, the array has 2 fewer timepoints than our input)\n",
-    "  return xp.real(xp.fft.ifft(phases_added, f_len))\n",
-    "\n",
-    "def corrcoef_shape(a):\n",
-    "  assert(len(a.shape) > 1)\n",
-    "  return (a.shape[-2], a.shape[-2])"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "id": "Uy1e8PnWtjG3"
-   },
-   "outputs": [],
-   "source": [
-    "pd_mean = pd.DataFrame(group_fc)\n",
-    "plt.imshow(pd_mean, interpolation=\"none\", cmap=\"Greens\", vmin=0, vmax=1)\n",
-    "plt.colorbar()\n",
-    "plt.show()"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {
-    "id": "epKJIeJfyZqH"
-   },
-   "source": [
-    "## Graph Theory\n",
-    "\n",
-    "This is a work in progress :)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "id": "3oHPBwcxznLb"
-   },
-   "outputs": [],
-   "source": [
-    "fc = np.zeros((N_SUBJECTS, N_PARCELS, N_PARCELS))\n",
-    "for sub, ts in enumerate(timeseries_rest):\n",
-    "  fc[sub] = np.corrcoef( ts)\n",
-    "\n",
-    "group_fc = fc.mean(axis=0)\n",
-    "group_fc_nan = np.copy(group_fc)\n",
-    "np.fill_diagonal(group_fc_nan, np.nan)\n",
-    "\n",
-    "fc_matrix = pd.DataFrame(group_fc_nan)\n",
-    "fc_matrix.columns = region_info[\"name\"]\n",
-    "fc_matrix.index = region_info[\"name\"]\n",
-    "fc_matrix = fc_matrix.sort_index(0).sort_index(0)\n",
-    "\n",
-    "plt.imshow(fc_matrix, interpolation=\"none\", cmap=\"bwr\", vmin=-1, vmax=1)\n",
-    "plt.colorbar()\n",
-    "plt.show()"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "id": "rGSMRTH6291f"
-   },
-   "outputs": [],
-   "source": [
-    "group_fc = abs(group_fc)\n",
-    "group_fc_nan = abs(group_fc_nan)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "id": "h7AsgNeX3IvQ"
-   },
-   "outputs": [],
-   "source": [
-    "bins = np.arange(np.sqrt(len(np.concatenate(group_fc))))\n",
-    "bins = (bins - np.min(bins))/np.ptp(bins)\n",
-    "fig, axes = plt.subplots(1,2, figsize=(15,5))\n",
-    "\n",
-    "rawdist = sns.distplot(group_fc_nan.flatten(), bins=bins, kde=False, ax=axes[0], norm_hist=True)\n",
-    "rawdist.set(xlabel='Correlation Values', ylabel = 'Density Frequency')\n",
-    "\n",
-    "log10dist = sns.distplot(np.log10(group_fc_nan).flatten(), kde=False, ax=axes[1], norm_hist=True)\n",
-    "log10dist.set(xlabel='log(weights)')"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 72,
-   "metadata": {
-    "id": "PFS04-5sQDyz"
-   },
-   "outputs": [],
-   "source": [
-    "from collections import defaultdict\n",
-    "\n",
-    "\n",
-    "class FC_graph:\n",
-    "\n",
-    "  # Nodal properties\n",
-    "  WEIGHT = \"weight\"\n",
-    "  STRENGTH = \"strength\"\n",
-    "  STRENGTHNORM = \"strengthnorm\"\n",
-    "  DISTANCE = \"distance\"\n",
-    "  CLOSENESS = \"closeness\"\n",
-    "  BETWEENNESS = \"bw\"\n",
-    "  \n",
-    "  def __init__(self, np_matrix, names):\n",
-    "    self.data = np_matrix\n",
-    "    self.G = self._prepare_graph(np_matrix, region_info[\"name\"])\n",
-    "    self.names = names\n",
-    "    self._compute_degree(self.G)\n",
-    "    self._compute_distance(self.G)\n",
-    "\n",
-    "  def __len__(self):\n",
-    "    return nx.number_of_nodes(self.G)\n",
-    "\n",
-    "  def _prepare_graph(self, np_matrix, names):\n",
-    "    G = nx.from_numpy_matrix(np_matrix)\n",
-    "    G.remove_edges_from(list(nx.selfloop_edges(G)))\n",
-    "    return nx.relabel_nodes(G, dict(enumerate(names)))\n",
-    "\n",
-    "  def _compute_degree(self, G):\n",
-    "    strength = G.degree(weight=self.WEIGHT)\n",
-    "    strengths = dict(strength)\n",
-    "    nx.set_node_attributes(G, strengths, self.STRENGTH) # Add as nodal attribute\n",
-    "\n",
-    "    # Normalized node strength values 1/N-1\n",
-    "    normstrenghts = {node: val * 1/(len(G.nodes)-1) for (node, val) in strength}\n",
-    "    nx.set_node_attributes(G, normstrenghts, self.STRENGTHNORM)\n",
-    "  \n",
-    "  def _compute_distance(self, G):\n",
-    "    # The function accepts a argument 'distance' that, in correlation-based \n",
-    "    # networks, must be seen as the inverse of the weight value. Thus, a high\n",
-    "    # correlation value (e.g., 0.8) means a shorter distance (i.e., 0.2).\n",
-    "    G_distance_dict = {(e1, e2): 1 / abs(weight) for e1, e2, weight in G.edges(data=self.WEIGHT)}\n",
-    "\n",
-    "    # Then add them as attributes to the graph edges\n",
-    "    nx.set_edge_attributes(self.G, G_distance_dict, self.DISTANCE)\n",
-    "\n",
-    "\n",
-    "  def _node_subnet(self, node):\n",
-    "    return dict(zip(self.names, self.networks))[node]\n",
-    "\n",
-    "  def _make_subnet(self, data, names, subnet_names):\n",
-    "    i = np.array([name in subnet_names for name in names]).nonzero()[0]\n",
-    "    i_1 = np.reshape(i, (1, i.shape[0]))\n",
-    "    i_1 = np.repeat(i_1, i_1.shape[1], axis=0)\n",
-    "    i_2 = np.reshape(i, (i.shape[0], 1))\n",
-    "    i_2 = np.repeat(i_2, i_2.shape[0], axis=1)\n",
-    "    \n",
-    "    return FC_graph(data[i_1, i_2], subnet_names)\n",
-    "\n",
-    "\n",
-    "  # Methods to produce derivative graphs\n",
-    "  def get_subgraphs(self, region_info):\n",
-    "    network_members = defaultdict(list)\n",
-    "    names = region_info[\"name\"]\n",
-    "    for net, name in zip(region_info[\"network\"], names):\n",
-    "      network_members[net].append(name)\n",
-    "\n",
-    "    return { network: self._make_subnet(self.data, names, members)\n",
-    "                     for network, members in network_members.items() }\n",
-    "\n",
-    "  def get_sparser_graph(self, threshold):\n",
-    "    new_matrix = self.data.copy()\n",
-    "    new_matrix[new_matrix<=threshold] = 0\n",
-    "    return FC_graph(new_matrix, self.region_info)\n",
-    "\n",
-    "\n",
-    "  def node_degree(self, node):\n",
-    "    return nx.get_node_attributes(self.G, self.STRENGTHNORM)[node]\n",
-    "\n",
-    "  def mean_degree(self):\n",
-    "    strengths = nx.get_node_attributes(self.G, self.STRENGTHNORM).values()\n",
-    "    normstrengthlist = np.array(list(strengths))\n",
-    "    return np.sum(normstrengthlist)/len(self.G.nodes)\n",
-    "\n",
-    "\n",
-    "  # Plotting Functions\n",
-    "\n",
-    "  def closeness_centrality(self, node):\n",
-    "    if not nx.get_node_attributes(self.G, self.CLOSENESS):\n",
-    "      # Computation of Closeness Centrality\n",
-    "      closeness = nx.closeness_centrality(G, distance='distance')\n",
-    "\n",
-    "      # Now we add the closeness centrality value as an attribute to the nodes\n",
-    "      nx.set_node_attributes(self.G, closeness, self.CLOSENESS)\n",
-    "\n",
-    "    # Closeness Centrality Histogram\n",
-    "    sns.distplot(list(closeness.values()), kde=False, norm_hist=False)\n",
-    "    plt.xlabel('Centrality Values')\n",
-    "    plt.ylabel('Counts')\n",
-    "\n",
-    "  def betweenness_centrality(self):\n",
-    "    if not nx.get_node_attributes(self.G, self.CLOSENESS):\n",
-    "      betweenness = nx.betweenness_centrality(self.G, weight='distance', normalized=True) \n",
-    "      nx.set_node_attributes(G, betweenness, 'bc')\n"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 58,
-   "metadata": {
-    "id": "73eGjClFZh5A"
-   },
-   "outputs": [],
-   "source": [
-    "#wm_timeseries = load_condition('wm')\n",
-    "fc = np.zeros((N_SUBJECTS, N_PARCELS, N_PARCELS))\n",
-    "for sub, ts in enumerate(wm_timeseries):\n",
-    "  fc[sub] = np.corrcoef(ts)\n",
-    "fc_all = np.mean(fc, axis=0)\n",
-    "fc_G = FC_graph(fc_all, region_info[\"name\"])\n"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 69,
-   "metadata": {
-    "id": "qTn-TJVtxGRk"
-   },
-   "outputs": [],
-   "source": []
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "colab": {
-     "base_uri": "https://localhost:8080/"
-    },
-    "id": "0uaqk5vN-UW2",
-    "outputId": "b29f234a-1f01-4a7b-e94b-1684dcf03a49"
-   },
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "defaultdict(<class 'list'>, {'Visual1': ['R_V1', 'R_ProS', 'R_DVT', 'L_V1', 'L_ProS', 'L_DVT'], 'Visual2': ['R_MST', 'R_V6', 'R_V2', 'R_V3', 'R_V4', 'R_V8', 'R_V3A', 'R_V7', 'R_IPS1', 'R_FFC', 'R_V3B', 'R_LO1', 'R_LO2', 'R_PIT', 'R_MT', 'R_LIPv', 'R_VIP', 'R_PH', 'R_V6A', 'R_VMV1', 'R_VMV3', 'R_V4t', 'R_FST', 'R_V3CD', 'R_LO3', 'R_VMV2', 'R_VVC', 'L_MST', 'L_V6', 'L_V2', 'L_V3', 'L_V4', 'L_V8', 'L_V3A', 'L_V7', 'L_IPS1', 'L_FFC', 'L_V3B', 'L_LO1', 'L_LO2', 'L_PIT', 'L_MT', 'L_LIPv', 'L_VIP', 'L_PH', 'L_V6A', 'L_VMV1', 'L_VMV3', 'L_V4t', 'L_FST', 'L_V3CD', 'L_LO3', 'L_VMV2', 'L_VVC'], 'Somatomotor': ['R_4', 'R_3b', 'R_5m', 'R_5L', 'R_24dd', 'R_24dv', 'R_7AL', 'R_7PC', 'R_1', 'R_2', 'R_3a', 'R_6d', 'R_6mp', 'R_6v', 'R_OP4', 'R_OP1', 'R_OP2-3', 'R_FOP2', 'R_Ig', 'L_4', 'L_3b', 'L_5m', 'L_5L', 'L_24dd', 'L_24dv', 'L_7AL', 'L_7PC', 'L_1', 'L_2', 'L_3a', 'L_6d', 'L_6mp', 'L_6v', 'L_OP4', 'L_OP1', 'L_OP2-3', 'L_RI', 'L_FOP2', 'L_Ig'], 'Cingulo-Oper': ['R_FEF', 'R_5mv', 'R_23c', 'R_SCEF', 'R_6ma', 'R_7Am', 'R_p24pr', 'R_33pr', 'R_a24pr', 'R_p32pr', 'R_6r', 'R_46', 'R_9-46d', 'R_43', 'R_PFcm', 'R_PoI2', 'R_FOP4', 'R_MI', 'R_FOP1', 'R_FOP3', 'R_PFop', 'R_PF', 'R_PoI1', 'R_FOP5', 'R_PI', 'R_a32pr', 'R_p24', 'L_FEF', 'L_PEF', 'L_PSL', 'L_5mv', 'L_23c', 'L_SCEF', 'L_6ma', 'L_7Am', 'L_p24pr', 'L_a24pr', 'L_p32pr', 'L_6r', 'L_IFSa', 'L_46', 'L_9-46d', 'L_43', 'L_PFcm', 'L_PoI2', 'L_FOP4', 'L_MI', 'L_FOP1', 'L_FOP3', 'L_PFop', 'L_PF', 'L_PoI1', 'L_FOP5', 'L_PI', 'L_a32pr', 'L_p24'], 'Language': ['R_PEF', 'R_7PL', 'R_MIP', 'R_LIPd', 'R_6a', 'R_PFt', 'R_AIP', 'R_PHA3', 'R_TE2p', 'R_PHT', 'R_PGp', 'R_IP0', 'L_7PL', 'L_MIP', 'L_LIPd', 'L_6a', 'L_PFt', 'L_AIP', 'L_PHA3', 'L_TE2p', 'L_PHT', 'L_PGp', 'L_IP0'], 'Default': ['R_55b', 'R_PSL', 'R_SFL', 'R_STV', 'R_44', 'R_45', 'R_IFJa', 'R_IFSp', 'R_STGa', 'R_A5', 'R_STSda', 'R_STSdp', 'R_TPOJ1', 'R_TGv', 'L_55b', 'L_SFL', 'L_45', 'L_IFJa', 'L_STGa', 'L_A5', 'L_STSdp', 'L_TPOJ1', 'L_TGv'], 'Frontopariet': ['R_RSC', 'R_POS2', 'R_7Pm', 'R_8BM', 'R_8C', 'R_a47r', 'R_IFJp', 'R_IFSa', 'R_p9-46v', 'R_a9-46v', 'R_a10p', 'R_11l', 'R_13l', 'R_i6-8', 'R_s6-8', 'R_AVI', 'R_TE1p', 'R_IP2', 'R_IP1', 'R_PFm', 'R_p10p', 'R_p47r', 'L_RSC', 'L_POS2', 'L_7Pm', 'L_33pr', 'L_d32', 'L_8BM', 'L_8C', 'L_44', 'L_a47r', 'L_IFJp', 'L_IFSp', 'L_p9-46v', 'L_a9-46v', 'L_a10p', 'L_11l', 'L_13l', 'L_OFC', 'L_i6-8', 'L_s6-8', 'L_AVI', 'L_TE1p', 'L_IP2', 'L_IP1', 'L_PFm', 'L_31a', 'L_p10p', 'L_p47r', 'L_TE1m'], 'Auditory': ['R_A1', 'R_52', 'R_RI', 'R_TA2', 'R_PBelt', 'R_MBelt', 'R_LBelt', 'R_A4', 'L_A1', 'L_52', 'L_TA2', 'L_PBelt', 'L_MBelt', 'L_LBelt', 'L_A4'], 'Dorsal-atten': ['R_PCV', 'R_TPOJ2', 'R_TPOJ3', 'L_PCV', 'L_STV', 'L_TPOJ2', 'L_TPOJ3'], 'Posterior-Mu': ['R_7m', 'R_POS1', 'R_23d', 'R_v23ab', 'R_d23ab', 'R_31pv', 'R_a24', 'R_d32', 'R_p32', 'R_10r', 'R_47m', 'R_8Av', 'R_8Ad', 'R_9m', 'R_8BL', 'R_9p', 'R_10d', 'R_47l', 'R_9a', 'R_10v', 'R_10pp', 'R_OFC', 'R_47s', 'R_EC', 'R_PreS', 'R_H', 'R_PHA1', 'R_STSvp', 'R_TGd', 'R_TE1a', 'R_TE2a', 'R_PGi', 'R_PGs', 'R_PHA2', 'R_31pd', 'R_31a', 'R_25', 'R_s32', 'R_STSva', 'R_TE1m', 'L_7m', 'L_POS1', 'L_23d', 'L_v23ab', 'L_d23ab', 'L_31pv', 'L_a24', 'L_p32', 'L_10r', 'L_47m', 'L_8Av', 'L_8Ad', 'L_9m', 'L_8BL', 'L_9p', 'L_10d', 'L_47l', 'L_9a', 'L_10v', 'L_10pp', 'L_47s', 'L_EC', 'L_PreS', 'L_H', 'L_PHA1', 'L_STSda', 'L_STSvp', 'L_TGd', 'L_TE1a', 'L_TE2a', 'L_PGi', 'L_PGs', 'L_PHA2', 'L_31pd', 'L_25', 'L_s32', 'L_STSva'], 'Orbito-Affec': ['R_Pir', 'R_AAIC', 'R_pOFC', 'L_Pir', 'L_AAIC', 'L_pOFC'], 'Ventral-Mult': ['R_PeEc', 'R_TF', 'L_PeEc', 'L_TF']})\n",
-      "[True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]\n"
-     ]
-    }
-   ],
-   "source": [
-    "from collections import defaultdict\n",
-    "def get_subgraphs(region_info):\n",
-    "  network_members = defaultdict(list)\n",
-    "  for net, name in zip(region_info[\"network\"], region_info[\"name\"]):\n",
-    "    network_members[net].append(name)\n",
-    "\n",
-    "  names = region_info[\"name\"]\n",
-    "  print(network_members)\n",
-    "  for region, subnet in network_members.items():\n",
-    "    np.array([name in subnet for name in names]).nonzero()\n",
-    "  \n",
-    "get_subgraphs(region_info)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "id": "V7CFJqS55CUP"
-   },
-   "outputs": [],
-   "source": [
-    "G = nx.from_numpy_matrix(group_fc)\n",
-    "G.remove_edges_from(list(nx.selfloop_edges(G)))\n",
-    "G = nx.relabel_nodes(G, dict(enumerate(region_info[\"name\"])))\n",
-    "print(G.nodes)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "id": "2of8X-IS7IO_"
-   },
-   "outputs": [],
-   "source": [
-    "# Betweenness centrality:\n",
-    "#print(nx.betweenness_centrality.__doc__)\n",
-    "betweenness = nx.betweenness_centrality(G, weight='distance', normalized=True) \n",
-    "                                                              "
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "id": "jMVfZEob8e0e"
-   },
-   "outputs": [],
-   "source": [
-    "# Now we add the it as an attribute to the nodes\n",
-    "#nx.set_node_attributes(G, betweenness, 'bc')\n",
-    "\n",
-    "# Visualise  values directly\n",
-    "#print(betweenness)\n",
-    "\n",
-    "# Betweenness centrality Histogram\n",
-    "sns.distplot(list(betweenness.values()), kde=False)\n",
-    "plt.xlabel('Centrality Values')\n",
-    "plt.ylabel('Counts')"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "id": "LuUtiDBk7bJ3"
-   },
-   "outputs": [],
-   "source": [
-    "# Path Length\n",
-    "#print(nx.shortest_path_length.__doc__)\n",
-    "\n",
-    "# This is a versatile version of the ones below in which one can define or not source and target. Remove the hashtag to use this version.\n",
-    "#list(nx.shortest_path_length(G, weight='distance'))\n",
-    "\n",
-    "# This one can also be used if defining source and target: \n",
-    "#print(nx.dijkstra_path_length.__doc__)\n",
-    "#nx.dijkstra_path_length(G, source=20, target=25, weight='distance')\n",
-    "\n",
-    "# Whereas this one is for all pairs. Remove the hashtag to use this version.\n",
-    "#print(nx.all_pairs_dijkstra_path_length.__doc__)\n",
-    "list(nx.all_pairs_dijkstra_path_length(G, weight='distance'))"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "id": "BVl6hfTF879H"
-   },
-   "outputs": [],
-   "source": [
-    "# Average Path Length or Characteristic Path Length\n",
-    "#print(nx.average_shortest_path_length.__doc__)\n",
-    "nx.average_shortest_path_length(G, weight='distance')"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "id": "p87DDO5u9agi"
-   },
-   "outputs": [],
-   "source": [
-    "# Modularity\n",
-    "#print(community.best_partition.__doc__)\n",
-    "#from community import best_partition\n",
-    "part = community.best_partition(G, weight='weight')\n",
-    "\n",
-    "# Visualise values directly\n",
-    "#print(part)\n",
-    "\n",
-    "# Check the number of communities\n",
-    "set(part.values()).union()"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {
     "id": "RKOzUn2iPnQL"
    },
    "source": [
@@ -1096,6 +582,203 @@
     "- RELATIONAL: error, match, relation\n",
     "- SOCIAL: mental_resp, mental, other_resp, rnd\n",
     "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "qDu9nti5lNmo"
+   },
+   "outputs": [],
+   "source": [
+    "#times = load_condition('rest', cp)\n",
+    "\n",
+    "group_fc = cp.asnumpy(graph_threshold(times, 2).mean(axis=0))\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "vaVRRo2jjCVX"
+   },
+   "outputs": [],
+   "source": [
+    "times = cp.array(timeseries_rest)\n",
+    "\n",
+    "group_fc = cp.asnumpy(graph_threshold(times, 100).mean(axis=0))\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "Uy1e8PnWtjG3"
+   },
+   "outputs": [],
+   "source": [
+    "pd_mean = pd.DataFrame(group_fc)\n",
+    "plt.imshow(pd_mean, interpolation=\"none\", cmap=\"Greens\", vmin=0, vmax=1)\n",
+    "plt.colorbar()\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "PFS04-5sQDyz"
+   },
+   "outputs": [],
+   "source": [
+    "from collections import defaultdict\n",
+    "\n",
+    "def make_subgraphs(np_matrix, region_info):\n",
+    "  network_members = defaultdict(list)\n",
+    "  for net, name in zip(region_info[\"network\"], region_info[\"name\"]):\n",
+    "    network_members[net].append(name)\n",
+    "\n",
+    "\n",
+    "class FC_graph:\n",
+    "\n",
+    "  # Nodal properties\n",
+    "  WEIGHT = \"weight\"\n",
+    "  STRENGTH = \"strength\"\n",
+    "  STRENGTHNORM = \"strengthnorm\"\n",
+    "  DISTANCE = \"distance\"\n",
+    "  CLOSENESS = \"closeness\"\n",
+    "  \n",
+    "  def __init__(self, np_matrix, region_info):\n",
+    "    self.data = np_matrix\n",
+    "    self.G = self._prepare_graph(np_matrix, region_info[\"name\"])\n",
+    "    self.region_info = region_info\n",
+    "    self.names = self.region_info[\"name\"]\n",
+    "    self.networks = self.region_info[\"network\"]\n",
+    "\n",
+    "    # Compute subgraphs\n",
+    "    network_members = defaultdict(list)\n",
+    "    for net, name in zip(region_info[\"network\"], region_info[\"name\"]):\n",
+    "      network_members[net].append(name)\n",
+    "    self.sub_G = { net: self.G.subgraph(members).copy()\n",
+    "                     for net, members in network_members.items() }\n",
+    "\n",
+    "    self._compute_graph_attributes(self.G)\n",
+    "    [self._compute_graph_attributes(G) for G in self.sub_G.values()]\n",
+    "\n",
+    "  def _prepare_graph(self, np_matrix, names):\n",
+    "    G = nx.from_numpy_matrix(np_matrix)\n",
+    "    G.remove_edges_from(list(nx.selfloop_edges(G)))\n",
+    "    G = nx.relabel_nodes(G, dict(enumerate(names)))\n",
+    "\n",
+    "  def _compute_graph_attributes(self, G):\n",
+    "    self._compute_degree(G)\n",
+    "    self._compute_distance(G)\n",
+    "\n",
+    "  def _compute_degree(self, G):\n",
+    "    strength = G.degree(weight=self.WEIGHT)\n",
+    "    strengths = dict(strength)\n",
+    "    nx.set_node_attributes(G, strengths, self.STRENGTH) # Add as nodal attribute\n",
+    "\n",
+    "    # Normalized node strength values 1/N-1\n",
+    "    normstrenghts = {node: val * 1/(len(G.nodes)-1) for (node, val) in strength}\n",
+    "    nx.set_node_attributes(G, normstrenghts, self.STRENGTHNORM)\n",
+    "  \n",
+    "  def _compute_distance(self, G):\n",
+    "    # The function accepts a argument 'distance' that, in correlation-based \n",
+    "    # networks, must be seen as the inverse of the weight value. Thus, a high\n",
+    "    # correlation value (e.g., 0.8) means a shorter distance (i.e., 0.2).\n",
+    "    G_distance_dict = {(e1, e2): 1 / abs(weight) for e1, e2, weight in G.edges(data=self.WEIGHT)}\n",
+    "\n",
+    "    # Then add them as attributes to the graph edges\n",
+    "    nx.set_edge_attributes(self.G, G_distance_dict, self.DISTANCE)\n",
+    "\n",
+    "\n",
+    "  def _node_subnet(self, node):\n",
+    "    return dict(zip(self.names, self.networks))[node]\n",
+    "\n",
+    "  def get_subgraphs(self, region_info):\n",
+    "    network_members = defaultdict(list)\n",
+    "    for net, name in zip(region_info[\"network\"], region_info[\"name\"]):\n",
+    "      network_members[net].append(name)\n",
+    "\n",
+    "    names = np.array(region_info[\"name\"])\n",
+    "    for region in network_members:\n",
+    "      indices = np.where(names in )\n",
+    "    \n",
+    "    return = { net: self.G.subgraph(members).copy()\n",
+    "                     for net, members in network_members.items() }\n",
+    "\n",
+    "\n",
+    "\n",
+    "  def node_degree(self, node, subnet=False):\n",
+    "    G = self._node_subnet(node) if subnet else self.G\n",
+    "    return nx.get_node_attributes(G, self.STRENGTHNORM)[node]\n",
+    "\n",
+    "  def mean_degree(self, subnet=None):\n",
+    "    G = subnet if subnet else self.G\n",
+    "    strengths = nx.get_node_attributes(G, self.STRENGTHNORM).values()\n",
+    "    normstrengthlist = np.array(list(strengths))\n",
+    "    return np.sum(normstrengthlist)/len(G.nodes)\n",
+    "\n",
+    "  def sparser_graph(self, threshold):\n",
+    "    new_matrix = self.data.copy()\n",
+    "    new_matrix[new_matrix<=threshold] = 0\n",
+    "    return FC_graph(new_matrix, self.region_info)\n",
+    "\n",
+    "  def closeness_centrality(self, node):\n",
+    "    \n",
+    "\n",
+    "    # Computation of Closeness Centrality\n",
+    "    closeness = nx.closeness_centrality(G, distance='distance')\n",
+    "\n",
+    "    # Now we add the closeness centrality value as an attribute to the nodes\n",
+    "    nx.set_node_attributes(self.G, closeness, self.CLOSENESS)\n",
+    "\n",
+    "    # Closeness Centrality Histogram\n",
+    "    sns.distplot(list(closeness.values()), kde=False, norm_hist=False)\n",
+    "    plt.xlabel('Centrality Values')\n",
+    "    plt.ylabel('Counts')\n",
+    "\n",
+    "  def betweenness_centrality(self):\n",
+    "    betweenness = nx.betweenness_centrality(self.G, weight='distance', normalized=True) "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "0uaqk5vN-UW2"
+   },
+   "outputs": [],
+   "source": [
+    "from collections import defaultdict\n",
+    "def get_subgraphs(region_info):\n",
+    "  network_members = defaultdict(list)\n",
+    "  for net, name in zip(region_info[\"network\"], region_info[\"name\"]):\n",
+    "    network_members[net].append(name)\n",
+    "\n",
+    "  names = region_info[\"name\"]\n",
+    "  print(network_members)\n",
+    "  for region, subnet in network_members.items():\n",
+    "    np.array([name in subnet for name in names]).nonzero()\n",
+    "  \n",
+    "get_subgraphs(region_info)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "73eGjClFZh5A"
+   },
+   "outputs": [],
+   "source": [
+    "fc_G = FC_graph(group_fc, region_info)\n",
+    "\n",
+    "fc_G.mean_degree()"
    ]
   },
   {
@@ -1231,7 +914,7 @@
    },
    "outputs": [],
    "source": [
-    "plotting.view_connectome(group_fc, atlas[\"coords\"], edge_threshold=\"99%\")"
+    "plotting.view_connectome(group_fc_2bk, atlas[\"coords\"], edge_threshold=\"99%\")"
    ]
   },
   {
@@ -1241,6 +924,125 @@
    },
    "source": [
     "## Extract connectivity features"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "cellView": "form",
+    "id": "-3L7hYwdaM1J"
+   },
+   "outputs": [],
+   "source": [
+    "#@title Graph Thresholding\n",
+    "#@markdown Run this to get the thresholding functions! Main entrypoint is below, \n",
+    "#@markdown use `help(graph_threshold)` for full description\n",
+    "\n",
+    "#@markdown `graph_threshold(input, numSurr)`\n",
+    "#@markdown\n",
+    "#@markdown Be sure to change the runtime to gpu to speed this up as much as possible! Pass in cupy arrays rather than numpy arrays.\n",
+    "def graph_threshold(input, numSurr):\n",
+    "  \"\"\"\n",
+    "    Thresholds FC data using fourier transform surrogates. Pass in numpy or cupy \n",
+    "    array. Array must be at least 2 dimensions: the second to last must be nodes\n",
+    "    (e.g. atlas ROI), and the last must be the timecourse. The first\n",
+    "    dimension(s) may be any sort of indexing (e.g. subjects, conditions, etc). \n",
+    "\n",
+    "    Note that using cupy arrays is more than 10 times as fast as using numpy \n",
+    "    arrays. Be sure to enable GPU in colab.\n",
+    "\n",
+    "    Returns array of same type as input array (numpy vs cupy). Shape will \n",
+    "    be the same as the input, with the exception of the last two dimensions,\n",
+    "    which will contain the thresholded functional connectivity graphs\n",
+    "\n",
+    "    Args:\n",
+    "    x (numpy/cupy array of floats with at least 2 dims): data to be thresholded\n",
+    "    numSurr (scalar): Number of surrogates to calculate\n",
+    "\n",
+    "    Returns:\n",
+    "    (numpy/cupy array of floats) : Functional connectivity graphs \n",
+    "  \"\"\"\n",
+    "  xp = get_array_mod(input)\n",
+    "  index_dims = input.shape[:-2]\n",
+    "  if len(index_dims) > 1:\n",
+    "    # We put the single number inside a tuple\n",
+    "    index_dims = ( func.reduce(op.mul, input.shape[:-2]) )\n",
+    "  elif len(index_dims) == 0:\n",
+    "    index_dims = ( 1, )\n",
+    "  # Here, if index_dims is an empty tuple, it will not contribute anything to\n",
+    "  # the shape (i.e. working_shape will be a 2d tuple)\n",
+    "  shape = (*index_dims, *input.shape[-2:])\n",
+    "  working_input = xp.reshape(input, shape)\n",
+    "  results = xp.empty((*index_dims, *corrcoef_shape(input)))\n",
+    "  for i, sample in enumerate(working_input):\n",
+    "    results[i] = surrogate_threshold(sample, numSurr)\n",
+    "  \n",
+    "  return xp.reshape(results, (*input.shape[:-2], *corrcoef_shape(input)))\n",
+    "\n",
+    "\n",
+    "def surrogate_threshold(input, numSurr):\n",
+    "  xp = get_array_mod(input)\n",
+    "  assert(len(input.shape) == 2)\n",
+    "  fc_surr = xp.empty((numSurr, *corrcoef_shape(input)))\n",
+    "  for i in range(numSurr):\n",
+    "    surr = phase_randomize(input)\n",
+    "    fc_surr[i] = xp.corrcoef(surr)\n",
+    "\n",
+    "  fc = xp.corrcoef(input)\n",
+    "  cp.cuda.Device().synchronize()\n",
+    "\n",
+    "  if xp is cp:\n",
+    "    fc = cp.asnumpy(fc)\n",
+    "    fc_surr = cp.asnumpy(fc_surr)\n",
+    "  pvals = sc.stats.mstats.ttest_1samp(fc_surr, fc, axis=0).pvalue\n",
+    "  reject = two_d_multipletest(pvals)\n",
+    "  fc[~reject] = 0\n",
+    "  if xp is cp:\n",
+    "    fc = cp.asarray(fc)\n",
+    "  return fc\n",
+    "\n",
+    "\n",
+    "def two_d_multipletest(pvals, method='fdr_bh'):\n",
+    "  reject = sm.stats.multipletests(np.reshape(pvals, -1), method=method)[0]\n",
+    "  return np.reshape(reject, pvals.shape)\n",
+    "\n",
+    "\n",
+    "def phase_randomize(input):\n",
+    "  xp = get_array_mod(input)\n",
+    "  f_len = input.shape[-1]\n",
+    "  # 1. Calculate the Fourier transform of the original signal.\n",
+    "  f_transform = xp.fft.fft(input, f_len, axis=-1)\n",
+    "  amplitudes = np.abs(f_transform)\n",
+    "\n",
+    "  # 2. Generate a vector of random phases (i.e. a random sequence of values in\n",
+    "  #    the range [0, 2pi]) , with length L/2 , where L is the length of the time\n",
+    "  #    series.\n",
+    "  #    In this implementation, we make phases the same length as the transform,\n",
+    "  #    then symmetrize the phases by setting the front half as equal to the \n",
+    "  #    negative of the back half.\n",
+    "  phases = xp.random.uniform(-xp.pi, xp.pi, input.shape)\n",
+    "  phases[..., f_len//2:] = -phases[..., f_len//2:0:-1]\n",
+    "  phases[..., 0] = 0\n",
+    "\n",
+    "  # 3. As the Fourier transform is symmetrical, to create the new phase \n",
+    "  #    randomized vector, multiply the first half of F (i.e. the half\n",
+    "  #    corresponding to the positive frequencies) by the phases to create the\n",
+    "  #    first half of F_r. The remainder of F_r is then the horizontally flipped\n",
+    "  #    complex conjugate of the first half. \n",
+    "\n",
+    "  phases_added = amplitudes * xp.exp(1j * phases)\n",
+    "\n",
+    "\n",
+    "  # 4. Finally, the inverse Fourier transform F_r of gives the FT surrogate. \n",
+    "  #    Specifying time_len (the length of our original matrix) automatically\n",
+    "  #    pads the input array with 2 0s in each trial (as a result of the above\n",
+    "  #    operations, the array has 2 fewer timepoints than our input)\n",
+    "  return xp.real(xp.fft.ifft(phases_added, f_len))\n",
+    "\n",
+    "def corrcoef_shape(a):\n",
+    "  assert(len(a.shape) > 1)\n",
+    "  return (a.shape[-2], a.shape[-2])"
    ]
   },
   {
@@ -1279,6 +1081,333 @@
     "#target_rois = network_regions['Dorsal-atten']\n",
     "#fc_n2n = extract_connectivities(seed_rois, target_rois, fc, N_SUBJECTS)\n",
     "#fc_dlPFC_to_DAN = fc_n2n.mean(axis=2)    # average over all target nodes\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "id": "epKJIeJfyZqH"
+   },
+   "source": [
+    "### Graph Theory\n",
+    "\n",
+    "This is a work in progress :)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "3oHPBwcxznLb"
+   },
+   "outputs": [],
+   "source": [
+    "fc = np.zeros((N_SUBJECTS, N_PARCELS, N_PARCELS))\n",
+    "for sub, ts in enumerate(timeseries_rest):\n",
+    "  fc[sub] = np.corrcoef( ts)\n",
+    "\n",
+    "group_fc = fc.mean(axis=0)\n",
+    "group_fc_nan = np.copy(group_fc)\n",
+    "np.fill_diagonal(group_fc_nan, np.nan)\n",
+    "\n",
+    "fc_matrix = pd.DataFrame(group_fc_nan)\n",
+    "fc_matrix.columns = region_info[\"name\"]\n",
+    "fc_matrix.index = region_info[\"name\"]\n",
+    "fc_matrix = fc_matrix.sort_index(0).sort_index(0)\n",
+    "\n",
+    "plt.imshow(fc_matrix, interpolation=\"none\", cmap=\"bwr\", vmin=-1, vmax=1)\n",
+    "plt.colorbar()\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "rGSMRTH6291f"
+   },
+   "outputs": [],
+   "source": [
+    "group_fc = abs(group_fc)\n",
+    "group_fc_nan = abs(group_fc_nan)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "h7AsgNeX3IvQ"
+   },
+   "outputs": [],
+   "source": [
+    "bins = np.arange(np.sqrt(len(np.concatenate(group_fc))))\n",
+    "bins = (bins - np.min(bins))/np.ptp(bins)\n",
+    "fig, axes = plt.subplots(1,2, figsize=(15,5))\n",
+    "\n",
+    "rawdist = sns.distplot(group_fc_nan.flatten(), bins=bins, kde=False, ax=axes[0], norm_hist=True)\n",
+    "rawdist.set(xlabel='Correlation Values', ylabel = 'Density Frequency')\n",
+    "\n",
+    "log10dist = sns.distplot(np.log10(group_fc_nan).flatten(), kde=False, ax=axes[1], norm_hist=True)\n",
+    "log10dist.set(xlabel='log(weights)')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "PFS04-5sQDyz"
+   },
+   "outputs": [],
+   "source": [
+    "from collections import defaultdict\n",
+    "\n",
+    "def make_subgraphs(np_matrix, region_info):\n",
+    "  network_members = defaultdict(list)\n",
+    "  for net, name in zip(region_info[\"network\"], region_info[\"name\"]):\n",
+    "    network_members[net].append(name)\n",
+    "\n",
+    "\n",
+    "class FC_graph:\n",
+    "\n",
+    "  # Nodal properties\n",
+    "  WEIGHT = \"weight\"\n",
+    "  STRENGTH = \"strength\"\n",
+    "  STRENGTHNORM = \"strengthnorm\"\n",
+    "  DISTANCE = \"distance\"\n",
+    "  CLOSENESS = \"closeness\"\n",
+    "  \n",
+    "  def __init__(self, np_matrix, region_info):\n",
+    "    self.data = np_matrix\n",
+    "    self.G = self._prepare_graph(np_matrix, region_info[\"name\"])\n",
+    "    self.region_info = region_info\n",
+    "    self.names = self.region_info[\"name\"]\n",
+    "    self.networks = self.region_info[\"network\"]\n",
+    "\n",
+    "    # Compute subgraphs\n",
+    "    network_members = defaultdict(list)\n",
+    "    for net, name in zip(region_info[\"network\"], region_info[\"name\"]):\n",
+    "      network_members[net].append(name)\n",
+    "    self.sub_G = { net: self.G.subgraph(members).copy()\n",
+    "                     for net, members in network_members.items() }\n",
+    "\n",
+    "    self._compute_graph_attributes(self.G)\n",
+    "    [self._compute_graph_attributes(G) for G in self.sub_G.values()]\n",
+    "\n",
+    "  def _prepare_graph(self, np_matrix, names):\n",
+    "    G = nx.from_numpy_matrix(np_matrix)\n",
+    "    G.remove_edges_from(list(nx.selfloop_edges(G)))\n",
+    "    G = nx.relabel_nodes(G, dict(enumerate(names)))\n",
+    "\n",
+    "  def _compute_graph_attributes(self, G):\n",
+    "    self._compute_degree(G)\n",
+    "    self._compute_distance(G)\n",
+    "\n",
+    "  def _compute_degree(self, G):\n",
+    "    strength = G.degree(weight=self.WEIGHT)\n",
+    "    strengths = dict(strength)\n",
+    "    nx.set_node_attributes(G, strengths, self.STRENGTH) # Add as nodal attribute\n",
+    "\n",
+    "    # Normalized node strength values 1/N-1\n",
+    "    normstrenghts = {node: val * 1/(len(G.nodes)-1) for (node, val) in strength}\n",
+    "    nx.set_node_attributes(G, normstrenghts, self.STRENGTHNORM)\n",
+    "  \n",
+    "  def _compute_distance(self, G):\n",
+    "    # The function accepts a argument 'distance' that, in correlation-based \n",
+    "    # networks, must be seen as the inverse of the weight value. Thus, a high\n",
+    "    # correlation value (e.g., 0.8) means a shorter distance (i.e., 0.2).\n",
+    "    G_distance_dict = {(e1, e2): 1 / abs(weight) for e1, e2, weight in G.edges(data=self.WEIGHT)}\n",
+    "\n",
+    "    # Then add them as attributes to the graph edges\n",
+    "    nx.set_edge_attributes(self.G, G_distance_dict, self.DISTANCE)\n",
+    "\n",
+    "\n",
+    "  def _node_subnet(self, node):\n",
+    "    return dict(zip(self.names, self.networks))[node]\n",
+    "\n",
+    "  def get_subgraphs(self, region_info):\n",
+    "    network_members = defaultdict(list)\n",
+    "    for net, name in zip(region_info[\"network\"], region_info[\"name\"]):\n",
+    "      network_members[net].append(name)\n",
+    "\n",
+    "    names = np.array(region_info[\"name\"])\n",
+    "    for region in network_members:\n",
+    "      indices = np.where(names in )\n",
+    "    \n",
+    "    return = { net: self.G.subgraph(members).copy()\n",
+    "                     for net, members in network_members.items() }\n",
+    "\n",
+    "\n",
+    "\n",
+    "  def node_degree(self, node, subnet=False):\n",
+    "    G = self._node_subnet(node) if subnet else self.G\n",
+    "    return nx.get_node_attributes(G, self.STRENGTHNORM)[node]\n",
+    "\n",
+    "  def mean_degree(self, subnet=None):\n",
+    "    G = subnet if subnet else self.G\n",
+    "    strengths = nx.get_node_attributes(G, self.STRENGTHNORM).values()\n",
+    "    normstrengthlist = np.array(list(strengths))\n",
+    "    return np.sum(normstrengthlist)/len(G.nodes)\n",
+    "\n",
+    "  def sparser_graph(self, threshold):\n",
+    "    new_matrix = self.data.copy()\n",
+    "    new_matrix[new_matrix<=threshold] = 0\n",
+    "    return FC_graph(new_matrix, self.region_info)\n",
+    "\n",
+    "  def closeness_centrality(self, node):\n",
+    "    \n",
+    "\n",
+    "    # Computation of Closeness Centrality\n",
+    "    closeness = nx.closeness_centrality(G, distance='distance')\n",
+    "\n",
+    "    # Now we add the closeness centrality value as an attribute to the nodes\n",
+    "    nx.set_node_attributes(self.G, closeness, self.CLOSENESS)\n",
+    "\n",
+    "    # Closeness Centrality Histogram\n",
+    "    sns.distplot(list(closeness.values()), kde=False, norm_hist=False)\n",
+    "    plt.xlabel('Centrality Values')\n",
+    "    plt.ylabel('Counts')\n",
+    "\n",
+    "  def betweenness_centrality(self):\n",
+    "    betweenness = nx.betweenness_centrality(self.G, weight='distance', normalized=True) "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "0uaqk5vN-UW2"
+   },
+   "outputs": [],
+   "source": [
+    "from collections import defaultdict\n",
+    "def get_subgraphs(region_info):\n",
+    "  network_members = defaultdict(list)\n",
+    "  for net, name in zip(region_info[\"network\"], region_info[\"name\"]):\n",
+    "    network_members[net].append(name)\n",
+    "\n",
+    "  names = region_info[\"name\"]\n",
+    "  print(network_members)\n",
+    "  for region, subnet in network_members.items():\n",
+    "    np.array([name in subnet for name in names]).nonzero()\n",
+    "  \n",
+    "get_subgraphs(region_info)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "73eGjClFZh5A"
+   },
+   "outputs": [],
+   "source": [
+    "fc_G = FC_graph(group_fc, region_info)\n",
+    "\n",
+    "fc_G.mean_degree()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "V7CFJqS55CUP"
+   },
+   "outputs": [],
+   "source": [
+    "G = nx.from_numpy_matrix(group_fc)\n",
+    "G.remove_edges_from(list(nx.selfloop_edges(G)))\n",
+    "G = nx.relabel_nodes(G, dict(enumerate(region_info[\"name\"])))\n",
+    "print(G.nodes)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "2of8X-IS7IO_"
+   },
+   "outputs": [],
+   "source": [
+    "# Betweenness centrality:\n",
+    "#print(nx.betweenness_centrality.__doc__)\n",
+    "betweenness = nx.betweenness_centrality(G, weight='distance', normalized=True) \n",
+    "                                                              "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "jMVfZEob8e0e"
+   },
+   "outputs": [],
+   "source": [
+    "# Now we add the it as an attribute to the nodes\n",
+    "#nx.set_node_attributes(G, betweenness, 'bc')\n",
+    "\n",
+    "# Visualise  values directly\n",
+    "#print(betweenness)\n",
+    "\n",
+    "# Betweenness centrality Histogram\n",
+    "sns.distplot(list(betweenness.values()), kde=False)\n",
+    "plt.xlabel('Centrality Values')\n",
+    "plt.ylabel('Counts')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "LuUtiDBk7bJ3"
+   },
+   "outputs": [],
+   "source": [
+    "# Path Length\n",
+    "#print(nx.shortest_path_length.__doc__)\n",
+    "\n",
+    "# This is a versatile version of the ones below in which one can define or not source and target. Remove the hashtag to use this version.\n",
+    "#list(nx.shortest_path_length(G, weight='distance'))\n",
+    "\n",
+    "# This one can also be used if defining source and target: \n",
+    "#print(nx.dijkstra_path_length.__doc__)\n",
+    "#nx.dijkstra_path_length(G, source=20, target=25, weight='distance')\n",
+    "\n",
+    "# Whereas this one is for all pairs. Remove the hashtag to use this version.\n",
+    "#print(nx.all_pairs_dijkstra_path_length.__doc__)\n",
+    "list(nx.all_pairs_dijkstra_path_length(G, weight='distance'))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "BVl6hfTF879H"
+   },
+   "outputs": [],
+   "source": [
+    "# Average Path Length or Characteristic Path Length\n",
+    "#print(nx.average_shortest_path_length.__doc__)\n",
+    "nx.average_shortest_path_length(G, weight='distance')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "id": "p87DDO5u9agi"
+   },
+   "outputs": [],
+   "source": [
+    "# Modularity\n",
+    "#print(community.best_partition.__doc__)\n",
+    "#from community import best_partition\n",
+    "part = community.best_partition(G, weight='weight')\n",
+    "\n",
+    "# Visualise values directly\n",
+    "#print(part)\n",
+    "\n",
+    "# Check the number of communities\n",
+    "set(part.values()).union()"
    ]
   },
   {
@@ -1354,15 +1483,6 @@
     "hist_rt_2 = back2_mean[\"MEDIAN_RT\"].hist(bins=20, color = \"yellow\", alpha=0.3)\n",
     "\n",
     "\n"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {
-    "id": "_cHs2w31WHl1"
-   },
-   "source": [
-    "But, while not formally taught as part of the course, [`pandas`](https://pandas.pydata.org/) offers more powerful tools for tabular data analysis."
    ]
   },
   {
