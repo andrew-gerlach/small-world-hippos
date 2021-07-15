@@ -41,7 +41,10 @@
     "  cp = None\n",
     "import pandas as pd\n",
     "import nibabel as nib\n",
+    "<<<<<<< local\n",
     "import colab\n",
+    "=======\n",
+    ">>>>>>> remote\n",
     "\n",
     "# Plotting modules\n",
     "import matplotlib.pyplot as plt\n",
@@ -58,8 +61,18 @@
     "# python modules\n",
     "import functools as func\n",
     "import operator as op\n",
-    "import os\n",
-    ""
+    "import os\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {
+    "id": "vTpq_GoJeQUj"
+   },
+   "outputs": [],
+   "source": [
+    "colab.utils.sys.getprofile()"
    ]
   },
   {
@@ -755,11 +768,11 @@
    },
    "outputs": [],
    "source": [
+    "<<<<<<< LOCAL CELL DELETED >>>>>>>\n",
     "times = cp.array(timeseries_rest)\n",
     "\n",
     "group_fc = cp.asnumpy(graph_threshold(times, 100).mean(axis=0))\n",
-    "\n",
-    ""
+    "\n"
    ]
   },
   {
@@ -1264,8 +1277,7 @@
     "seed_rois = [\"R_9-46d\"]\n",
     "target_rois = network_regions['Dorsal-atten']\n",
     "fc_n2n = extract_connectivities(seed_rois, target_rois, fc, N_SUBJECTS)\n",
-    "fc_dlPFC_to_DAN = fc_n2n.mean(axis=2)    # average over all target nodes\n",
-    ""
+    "fc_dlPFC_to_DAN = fc_n2n.mean(axis=2)    # average over all target nodes\n"
    ]
   },
   {
@@ -1583,7 +1595,49 @@
    "cell_type": "code",
    "execution_count": null,
    "metadata": {
-    "id": "_PxLSdGYXfen"
+    "id": "_PxLSdGYXfen",
+    "nbdime-conflicts": {
+     "local_diff": [
+      {
+       "diff": [
+        {
+         "key": 0,
+         "op": "addrange",
+         "valuelist": [
+          "qlVqBctfjEO0"
+         ]
+        },
+        {
+         "key": 0,
+         "length": 1,
+         "op": "removerange"
+        }
+       ],
+       "key": "id",
+       "op": "patch"
+      }
+     ],
+     "remote_diff": [
+      {
+       "diff": [
+        {
+         "key": 0,
+         "op": "addrange",
+         "valuelist": [
+          "xiFSLnzzV49u"
+         ]
+        },
+        {
+         "key": 0,
+         "length": 1,
+         "op": "removerange"
+        }
+       ],
+       "key": "id",
+       "op": "patch"
+      }
+     ]
+    }
    },
    "outputs": [],
    "source": [
