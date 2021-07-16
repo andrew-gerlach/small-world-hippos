@@ -1,3 +1,4 @@
 .gitattributes
 .vscode
 .ipynb_checkpoints
+singularity
