@@ -3,3 +3,5 @@
 .ipynb_checkpoints
 singularity
 .python
+requirements.txt
+jupyter_notebook
