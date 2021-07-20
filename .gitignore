@@ -6,3 +6,5 @@ singularity
 requirements.txt
 jupyter_notebook
 .localdata
+.checkpoints
+.virtual_documents
