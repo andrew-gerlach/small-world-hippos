@@ -1,0 +1,10 @@
+.gitattributes
+.vscode
+.ipynb_checkpoints
+singularity
+.python
+requirements.txt
+jupyter_notebook
+.localdata
+.checkpoints
+.virtual_documents
